@@ -63,7 +63,7 @@ module.exports = {
         .optimization
         .minimize(true) // js文件最小化处理
         .splitChunks({ chunks: 'all' }) // 分割代码
-    };
+    }
 
     // config.externals({
     //   vue: 'Vue',
@@ -86,7 +86,7 @@ module.exports = {
     config.plugins.delete('preload-cooperative');
   },
 
-  configureWebpack: config => {
+  configureWebpack: () => {
     if (!isDev) {
       return {
         plugins: [
@@ -191,7 +191,7 @@ module.exports = {
   parallel: require('os').cpus().length > 1, // 构建时开启多进程处理babel编译
 
   devServer: {
-    open: true,//设置自动打开
+    // open: true,//设置自动打开
     port: 1880,//设置端口
     stats: {
       // 去掉一些警告

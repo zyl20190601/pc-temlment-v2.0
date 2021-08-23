@@ -7,20 +7,20 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-import { getPopularLinePage } from "@/api/index";
+import HelloWorld from '@/components/HelloWorld.vue';
+import { getPopularLinePage } from '@/api/index';
 
 export default {
-    name: "Home",
-    components: {
-        HelloWorld,
-    },
-    async created() {
-        await getPopularLinePage({
-            pageNum: 1,
-            pageSize: 10,
-        });
-    },
+  name: 'Home',
+  components: {
+    HelloWorld,
+  },
+  async created() {
+    await getPopularLinePage({
+      pageNum: 1,
+      pageSize: 10,
+    });
+  },
 };
 </script>
 
