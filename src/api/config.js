@@ -2,8 +2,7 @@ import axios from 'axios';
 import qs from 'qs';
 import { objKeySort } from '@/utils/format'
 import { encryptByMD5 } from '@/utils/encryption'
-import { QUERY_INFO_CONFIG, key } from '@/config'
-const isDev = process.env.NODE_ENV === 'development';
+import { QUERY_INFO_CONFIG, key, isDev } from '@/config'
 // axios 配置
 let instance = axios.create({
   baseURL: isDev ? '/api' : '',   //接口请求地址
@@ -29,7 +28,6 @@ let removeRepeatUrl = (config) => {
 }
 let saveRepeatUrl = (config) => {
   let comValue = config.method == 'get' ? qs.stringify(config.params) : qs.stringify(config.data);
-  // console.log(`%c 发送 api_${config.url.replace(/\/(\w+)\//, '')}${config.data && config.data.action ? '_' + config.data.action : ''} `, 'background:#2472C8;color:#fff', config.data);
   config.cancelToken = new cancelToken((c) => {
     pending.push({ u: config.url + '&' + config.method + '&' + comValue, f: c });  // 自定义唯一标识
   });
@@ -41,7 +39,7 @@ instance.interceptors.request.use(config => {
   if (config.method === 'post') {
     config.data = Object.assign(config.data, QUERY_INFO_CONFIG)
     config.data = objKeySort(config.data)
-    config.data.sign = encryptByMD5(config.data, key) // 获取sing，加密
+    config.data.sign = encryptByMD5(qs.stringify(config.data), key) // 获取sing，加密
   }
   // 在发送请求之前做些什么，比如传token
   removeRepeatUrl(config);       //在一个ajax发送前执行一下取消操作
@@ -55,10 +53,10 @@ instance.interceptors.request.use(config => {
 
 // 添加响应拦截器
 instance.interceptors.response.use(response => {
-  removeRepeatUrl(response.config);        //执行取消操作，把已经完成的请求从pending中移除
+  const { data, config } = response
+  removeRepeatUrl(response.config); //执行取消操作，把已完成的请求从pending中移除
   // 对响应数据做点什么
-  const res = response.data;
-  console.log(res, '数据====');
+  console.log(`%c 接收 api_${config.url.replace(/\/(\w+)\//, '')}`, 'background:#2472C8;color:#fff', data);
   //对错误代码做处理
   return response;
 }, error => {

@@ -1,7 +1,10 @@
+/**
+ * vue.config 配置
+ */
+const { isDev, notDev } = require('./src/config/env');
 const CompressionPlugin = require('compression-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const path = require('path')
-const isDev = process.env.NODE_ENV === 'development';
 const resolve = dir => {
   return path.join(__dirname, dir)
 }
@@ -51,7 +54,7 @@ module.exports = {
 
   chainWebpack: (config) => {
     // 图片压缩(仅非开发环境),代码分离
-    if (!isDev) {
+    if (notDev) {
       config.module.rule('images')
         .test(/\.(gif|png|jpe?g|svg)$/i)
         .use('image-webpack-loader')
@@ -87,21 +90,20 @@ module.exports = {
   },
 
   configureWebpack: () => {
-    if (!isDev) {
+    if (notDev) {
       return {
         plugins: [
           // 代码压缩
           new UglifyJsPlugin({
             uglifyOptions: {
               // 生产环境自动删除console
-              // compress: {
-              //   drop_debugger: true,
-              //   drop_console: true,
-              //   pure_funcs: ['console.log']
-              // }
+              compress: {
+                drop_debugger: true,
+                drop_console: true,
+              }
             },
             sourceMap: false,
-            parallel: true
+            parallel: true //使用多进程并行运行来提高构建速度。默认并发运行数：os.cpus().length - 1
           }),
           // 开启gzip可以很大程度减少包的大小
           new CompressionPlugin({
@@ -135,13 +137,10 @@ module.exports = {
                     /node_modules/.test(path) &&
                     /node_modules\/(?!element-ui)/.test(path) &&
                     /node_modules\/(?!@vue)/.test(path)
-                  // if (!isNeed && path.indexOf('node_modules') > -1) {
-                  //     console.log('vendor not need::', path, isNeed)
-                  // }
                   return isNeed
                 },
                 name: 'chunk-vendors',
-                priority: 10,
+                priority: 10, // 优先级配置，优先匹配优先级更高的规则，不设置默认为0
                 enforce: true
               },
               'element-ui': {
@@ -176,7 +175,7 @@ module.exports = {
                 enforce: true,
                 name: 'chunk-common', // 打包后的文件名
                 chunks: 'all', //
-                minChunks: 2,
+                minChunks: 2, // 重复2次才能打包到此模块
                 maxInitialRequests: 5,
                 minSize: 0,
                 priority: 1,

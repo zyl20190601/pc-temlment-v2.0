@@ -47,6 +47,6 @@ export const encryptBySHA256 = (message, key) => {
 
 // MD5 加密
 export const encryptByMD5 = (data, key) => {
-  data = key + data + key
+  data = key + JSON.parse(JSON.stringify(data)) + key
   return CryptoJS.MD5(data).toString().toUpperCase(); /* toString后会变成Hex 32位字符串*/
 }

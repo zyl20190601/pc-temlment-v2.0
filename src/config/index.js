@@ -1,3 +1,12 @@
+// 环境变量
+const {
+  isDev,
+  notDev,
+  isTest,
+  notTest,
+  isPro,
+  notPro } = require('./env');
+
 /**
  * 接口请求公共参数
  */
@@ -8,10 +17,17 @@ const QUERY_INFO_CONFIG = {
   timestamp: '2020-08-22 14:23:11',
 }
 
-// 密钥
+// MD5 密钥
 const key = '9hvxylajb0zzumhyx0g6z6w4ai895mzq'
 
 export {
+  key,
   QUERY_INFO_CONFIG,
-  key
+  isDev,
+  notDev,
+  isTest,
+  notTest,
+  isPro,
+  notPro
 }
+
