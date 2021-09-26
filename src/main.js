@@ -23,6 +23,7 @@ Vue.prototype.$bus = Bus
 // 挂载全局组件
 Vue.use(elementUI)
 
+
 // 挂载全局mixin
 Vue.mixin(mixin)
 

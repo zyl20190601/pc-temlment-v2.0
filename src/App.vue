@@ -1,12 +1,44 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
       <router-link to="/about">Abou111t</router-link>
+      <router-link to="/">Home</router-link> |
     </div>
-    <router-view />
+    <keep-alive>
+      <router-view
+        class="app-content-box"
+        v-if="$route.meta.keepAlive && isRouterAlive"
+      ></router-view>
+    </keep-alive>
+    <router-view
+      class="app-content-box"
+      v-if="!$route.meta.keepAlive && isRouterAlive"
+    ></router-view>
   </div>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      isRouterAlive: true,
+    }
+  },
+  provide () {
+    return {
+      reload: this.reload,
+    };
+  },
+  methods: {
+    reload () {
+      this.isRouterAlive = false;
+      this.$nextTick(function () {
+        this.isRouterAlive = true;
+      });
+    },
+  },
+}
+</script>
 
 <style lang="scss" scoped>
 #app {
