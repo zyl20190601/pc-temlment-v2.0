@@ -14,6 +14,8 @@ Vue.prototype.$moment = moment;//赋值使用
 
 // 重置样式
 import '@/assets/scss/reset.scss'
+// 重置 饿了么样式
+import '@/assets/scss/reset-element-ui.scss'
 
 Vue.config.productionTip = false
 
