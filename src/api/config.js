@@ -10,6 +10,7 @@ let instance = axios.create({
   withCredentials: true, //是否携带cookie
   headers: {
     'Content-Type': 'application/json',
+    // responseType: 'blob'
     // 'Content-Type': 'application/x-www-form-urlencoded',
   },
 })

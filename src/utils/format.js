@@ -1,3 +1,55 @@
+// 金额千分位
+export function moneyFormat (num) {
+  return (+num || 0)
+    .toString()
+    .replace(/^-?\d+/g, (m) => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
+}
+
+// 身份证隐藏
+export function idCardFormat (card) {
+  const length = card.length
+  if (length < 12) {
+    let str = ''
+    for (let i = 0; i < length; i++) {
+      str += '*'
+    }
+    return str
+  } else {
+    const dif = length - 11
+    let str = ''
+    for (let i = 0; i < length; i++) {
+      if ((i < dif && i < 4) || i > 14) {
+        str += card[i]
+      } else {
+        str += '*'
+      }
+    }
+    return str
+  }
+}
+
+// 手机隐藏
+export function phoneFormat (phone) {
+  const length = phone.length
+  if (length < 5) {
+    let str = ''
+    for (let i = 0; i < length; i++) {
+      str += '*'
+    }
+    return str
+  } else {
+    const dif = length - 4
+    let str = ''
+    for (let i = 0; i < length; i++) {
+      if ((i < dif && i < 3) || i > 6) {
+        str += phone[i]
+      } else {
+        str += '*'
+      }
+    }
+    return str
+  }
+}
 
 // 对象属性排序
 export const objKeySort = (obj) => {//排序的函数

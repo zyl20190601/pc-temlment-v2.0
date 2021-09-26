@@ -1,7 +1,7 @@
 /**
  * vue.config 配置
  */
-const { isDev, notDev } = require('./src/config/env');
+const { isDev, notDev, isPro } = require('./src/config/env');
 const CompressionPlugin = require('compression-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const path = require('path')
@@ -43,7 +43,7 @@ module.exports = {
       sass: {
         // 全局scss
         // prependData
-        data: `@import "@/assets/scss/reset.scss";@import "@/assets/scss/common.scss";`,
+        data: `@import "@/assets/scss/common.scss";`,
         sourceMap: isDev,
       },
       postcss: {
@@ -90,18 +90,24 @@ module.exports = {
   },
 
   configureWebpack: () => {
+    if (isPro) {
+      // 生产环境去掉 console
+      config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
+      config.optimization.minimizer[0].options.terserOptions.compress.drop_debugger = true
+    }
+
     if (notDev) {
       return {
         plugins: [
           // 代码压缩
           new UglifyJsPlugin({
-            uglifyOptions: {
-              // 生产环境自动删除console
-              compress: {
-                drop_debugger: true,
-                drop_console: true,
-              }
-            },
+            // uglifyOptions: {
+            //   // 生产环境自动删除console
+            //   compress: {
+            //     drop_debugger: true,
+            //     drop_console: true,
+            //   }
+            // },
             sourceMap: false,
             parallel: true //使用多进程并行运行来提高构建速度。默认并发运行数：os.cpus().length - 1
           }),
