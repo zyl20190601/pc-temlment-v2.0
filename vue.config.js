@@ -89,7 +89,7 @@ module.exports = {
     config.plugins.delete('preload-cooperative');
   },
 
-  configureWebpack: () => {
+  configureWebpack: (config) => {
     if (isPro) {
       // 生产环境去掉 console
       config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true
