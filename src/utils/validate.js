@@ -82,8 +82,51 @@ export function checkCertificateNumber (rule, value, callback, root) {
   callback()
 }
 
+// 邮箱
+export function email (rule, value, callback, root) {
+  console.log(root)
+  // eslint-disable-next-line no-useless-escape
+  let mal = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if (!value) {
+    return callback(new Error('不能为空'));
+  }
+  if (!(mal.test(value))) {
+    callback(new Error('请输入正确邮箱'));
+  } else {
+    callback();
+  }
+}
 
+// 开始时间
+export function startTime (rule, value, callback, root) {
+  console.log(root)
+  if (!value) {
+    return callback(new Error('请选择开始日期'));
+  } else {
+    callback();
+  }
+}
 
+// 结束时间
+export function endTime (rule, value, callback, root) {
+  console.log(root)
+  if (!value) {
+    return callback(new Error('请选择结束日期'));
+  } else {
+    callback();
+  }
+}
+
+// 整数
+export function checkInterNum (rule, value, callback, root) {
+  console.log(root)
+  const reg = /^[0-9]*[1-9][0-9]*$/
+  if (!reg.test(value)) {
+    return callback(new Error('请输入整数'))
+  } else {
+    callback()
+  }
+}
 
 /** 额外传参 示例
  * {
