@@ -102,8 +102,8 @@ dateFormat.masks = {
   mediumTime: 'h:MM:ss TT',
   longTime: 'h:MM:ss TT Z',
   isoDate: 'yyyy-mm-dd',
+  isoDateTime: 'yyyy-mm-dd HH:MM:ss',
   isoTime: 'HH:MM:ss',
-  isoDateTime: 'yyyy-mm-dd"T"HH:MM:ss',
   isoUtcDateTime: 'UTC:yyyy-mm-dd"T"HH:MM:ss"Z"',
 };
 

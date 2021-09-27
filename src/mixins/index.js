@@ -1,14 +1,18 @@
 export default {
   filters: {
-    date (val, cal = 'YYYY-MM-DD') {
-      return this.$moment.moment(val).format(cal)
+    // 格式化时间
+    date (val) {
+      return new Date(val).format('isoDate')
     },
+    dateTime (val) {
+      return new Date(val).format('isoDateTime')
+    }
   },
   methods: {
     // 格式化时间
-    formatDate (val = new Date(), cal = 'YYYY-MM-DD') {
+    formatDate (val = new Date(), cal = 'isoDate') {
       val = val || new Date()
-      return this.$moment.moment(val).format(cal)
+      return new Date(val).format(cal)
     },
     // 跳转
     jump (path, query = {}) {

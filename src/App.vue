@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    {{ 1632709211944 | date }}
+    {{ 1632709211944 | dateTime }}
+    {{ formatDate(1632709211944) }}
     <div id="nav">
       <router-link to="/about">Abou111t</router-link>
       <router-link to="/">Home</router-link> |
