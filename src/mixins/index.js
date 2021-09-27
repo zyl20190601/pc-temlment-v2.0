@@ -1,13 +1,4 @@
 export default {
-  filters: {
-    // 格式化时间
-    date (val) {
-      return new Date(val).format('isoDate')
-    },
-    dateTime (val) {
-      return new Date(val).format('isoDateTime')
-    }
-  },
   methods: {
     // 格式化时间
     formatDate (val = new Date(), cal = 'isoDate') {

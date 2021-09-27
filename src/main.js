@@ -6,13 +6,14 @@ import Bus from '@/utils/event-bus.js'
 import mixin from '@/mixins'
 
 import '@/utils/inject.js'
+import * as filters from '@/filters'
 
 import elementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 
-// import moment from 'moment'; //导入模块
-// moment.locale('zh-cn'); //设置语言 或 moment.lang('zh-cn');
-// Vue.prototype.$moment = moment;//赋值使用
+// import dayjs from 'dayjs'; //导入模块
+// dayjs.locale('zh-cn'); //设置语言 或 dayjs.lang('zh-cn');
+// Vue.prototype.$dayjs = dayjs;//赋值使用
 
 // 重置样式
 import '@/assets/scss/reset.scss'
@@ -31,6 +32,13 @@ Vue.use(elementUI)
 
 // 挂载全局mixin
 Vue.mixin(mixin)
+
+
+// 挂载全局过滤器
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
+
 
 new Vue({
   router,
