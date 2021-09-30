@@ -51,6 +51,17 @@ export function phoneFormat (phone) {
   }
 }
 
+/**
+ *  获取当前的日期：星期一，星期二，星期三 ....
+ * @param {*} val | 时间
+ * @returns
+ */
+export function dateDayFormat (val) {
+  const weeks = new Array('星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六');
+  const day = new Date(val).getDay();
+  return weeks[day]
+}
+
 // 对象属性排序
 export const objKeySort = (obj) => {//排序的函数
   let newkey = Object.keys(obj).sort();
