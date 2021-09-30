@@ -53,21 +53,25 @@ module.exports = {
   },
 
   chainWebpack: (config) => {
-    // 图片压缩(仅非开发环境),代码分离
-    if (notDev) {
+    // 图片压缩(仅非开发环境)
+    if (isPro) {
       config.module.rule('images')
         .test(/\.(gif|png|jpe?g|svg)$/i)
         .use('image-webpack-loader')
         .loader('image-webpack-loader')
         .options(customImgLoaderOptions)
         .end()
+    }
 
+    // 代码分离
+    if (notDev) {
       config
         .optimization
         .minimize(true) // js文件最小化处理
         .splitChunks({ chunks: 'all' }) // 分割代码
     }
 
+    // 忽略的模块
     // config.externals({
     //   vue: 'Vue',
     //   'vue-router': 'VueRouter',
@@ -75,10 +79,14 @@ module.exports = {
     //   'element-ui': 'Element'
     // })
 
+    // 配置引用路径
     config.resolve.alias
       .set('@', resolve('src'))
       .set('_com', resolve('src/components'))
       .set('_pageCom', resolve('src/views/components'))
+      .set('_utils', resolve('src/utils'))
+      .set('_img', resolve('src/assets/images'))
+
     // 移除 该插件 首屏就不会一次性加载全部路由了
     // 如果需要首屏依赖组件 可以这么写 import (/*webpackPrefetch: true */ './components')
     // 移除 prefetch 插件
@@ -101,13 +109,6 @@ module.exports = {
         plugins: [
           // 代码压缩
           new UglifyJsPlugin({
-            // uglifyOptions: {
-            //   // 生产环境自动删除console
-            //   compress: {
-            //     drop_debugger: true,
-            //     drop_console: true,
-            //   }
-            // },
             sourceMap: false,
             parallel: true //使用多进程并行运行来提高构建速度。默认并发运行数：os.cpus().length - 1
           }),
