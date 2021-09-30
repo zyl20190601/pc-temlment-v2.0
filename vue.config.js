@@ -84,7 +84,7 @@ module.exports = {
       .set('@', resolve('src'))
       .set('_com', resolve('src/components'))
       .set('_pageCom', resolve('src/views/components'))
-      .set('_utils', resolve('src/utils'))
+      .set('_ut', resolve('src/utils'))
       .set('_img', resolve('src/assets/images'))
 
     // 移除 该插件 首屏就不会一次性加载全部路由了
