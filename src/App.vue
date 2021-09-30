@@ -2,6 +2,7 @@
   <div id="app">
     {{ 1632709211944 | date }}
     {{ 1632709211944 | dateTime }}
+    {{ 1632709211944 | dateTimeChinese }}
     {{ formatDate(1632709211944) }}
     <div id="nav">
       <router-link to="/about">Abou111t</router-link>

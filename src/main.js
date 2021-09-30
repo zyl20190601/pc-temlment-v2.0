@@ -2,10 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import Bus from '@/utils/event-bus.js'
+import Bus from '@/utils/event-bus'
 import mixin from '@/mixins'
 
-import '@/utils/inject.js'
+import '@/utils/inject'
 import * as filters from '@/filters'
 
 import elementUI from 'element-ui'

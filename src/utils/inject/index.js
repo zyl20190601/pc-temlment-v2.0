@@ -1,4 +1,4 @@
-import './date_format.js'
+import '../date_format'
 
 function inject (target, methodName, callback) {
   if (!target || !methodName || !callback) return console.warn(`注入方法 -->${target} -- ${methodName} --${callback} 失败`);
