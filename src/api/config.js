@@ -107,19 +107,19 @@ export function get (url, data = {}) {
 
 /**
  * 封装所有请求
- * @param methed
+ * @param method
  * @param url
  * @param data
  * @param headers
  * @returns {Promise}
  */
-export function request (methed, url, data = {}, headers) {
+export function request (method, url, data = {}, headers) {
   return new Promise((resolve, reject) => {
     instance({
-      method: methed || 'post',
+      method: method || 'post',
       url: url,
-      params: methed === 'get' ? data : '',
-      data: methed !== 'get' ? data : '',
+      params: method === 'get' ? data : '',
+      data: method !== 'get' ? data : '',
       headers: headers || { 'Content-Type': 'application/json' },
     })
       .then(response => {

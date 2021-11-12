@@ -1,10 +1,16 @@
-import { post } from './config'
+import { prefix } from './base'
+import { request } from './config'
 
-export function getPopularLinePage (data) {
-  data = {
-    method: 'mdc.dock.popularLine.page',
-    timestamp: '2020-08-22 14:23:11',
-    ...data
-  }
-  return post('/', data)
-}
+// post
+export const addIntentionApi = (data) => request({
+  url: `${prefix}/security/intentionReport/insertIntentionTransactionReport`,
+  method: 'POST',
+  data
+})
+
+// get
+export const getListApi = (params) => request({
+  url: `${prefix}/security/commissionScheme/queryPage`,
+  method: 'GET',
+  params
+})
