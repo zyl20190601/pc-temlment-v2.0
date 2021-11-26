@@ -11,9 +11,9 @@ import * as filters from '@/filters'
 import elementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 
-// import dayjs from 'dayjs'; //导入模块
-// dayjs.locale('zh-cn'); //设置语言 或 dayjs.lang('zh-cn');
-// Vue.prototype.$dayjs = dayjs;//赋值使用
+import dayjs from 'dayjs'; //导入模块
+dayjs.locale('zh-cn'); //设置语言 或 dayjs.lang('zh-cn');
+Vue.prototype.$dayjs = dayjs;//赋值使用
 
 // 重置样式
 import '@/assets/scss/reset.scss'
