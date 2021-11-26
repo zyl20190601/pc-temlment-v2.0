@@ -46,3 +46,99 @@
   left: 0;
   top: 0;
 }
+
+// 动画 按钮大小 样式
+$btn-color: #2194e0;
+@mixin btn-animation-mixin {
+  display: inline-block;
+  vertical-align: top;
+  height: 44px;
+  line-height: 44px;
+  width: 120px;
+  color: $btn-color;
+  border: 1px solid $btn-color;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 4px;
+  position: relative;
+}
+
+// 按钮1 动画 亮光
+.btn-animation-light {
+  @include btn-animation-mixin;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+  &:before {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 100%;
+    width: 3em;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -4.5em;
+    transform: skewX(-45deg) translateX(0);
+    transition: none;
+  }
+  &:hover {
+    background-color: $btn-color;
+    color: #fff;
+    &::before {
+      transform: skewX(-45deg) translateX(260px);
+      transition: all 0.5s ease-in-out;
+    }
+  }
+}
+
+// 按钮2 动画 下左向上
+.btn-animation-bottom-left-up {
+  @include btn-animation-mixin;
+  z-index: 1;
+  text-transform: uppercase;
+  &:hover {
+    color: #fff;
+    &:after {
+      height: 100%;
+      width: 135%;
+    }
+  }
+  &::before,
+  &::after {
+    background: $btn-color;
+    content: "";
+    position: absolute;
+    z-index: -2;
+    border-radius: 3px;
+  }
+  &::after {
+    height: 100%;
+    left: -35%;
+    top: 0;
+    transform: skew(50deg);
+    transition-duration: 0.6s;
+    transform-origin: top left;
+    width: 0;
+    transition: all 0.5s;
+  }
+}
+
+// 按钮2 动画 向下中间圆圈
+.btn-animation-downward-middle-circle {
+  @include btn-animation-mixin;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  transition: color 1s;
+  &:hover {
+    animation: halftone 1s forwards;
+    background: radial-gradient(circle, $btn-color 0.2em, transparent 0.25em) 0
+        0/1.25em 1.25em,
+      radial-gradient(circle, $btn-color 0.2em, transparent 0.25em) 6.25em
+        6.25em/1.25em 1.25em;
+    color: #fff;
+  }
+  @keyframes halftone {
+    100% {
+      background-size: 2.375em 2.375em, 0.1em 0.1em;
+    }
+  }
+}
