@@ -10,22 +10,22 @@ const resolve = dir => {
 }
 
 //  自定义设置
-const customImgLoaderOptions = {
-  mozjpeg: {
-    progressive: true,
-    quality: 50
-  },
-  optipng: {
-    enabled: true
-  },
-  pngquant: {
-    quality: [0.5, 0.65],
-    speed: 4
-  },
-  gifsicle: {
-    interlaced: false
-  }
-}
+// const customImgLoaderOptions = {
+//   mozjpeg: {
+//     progressive: true,
+//     quality: 50
+//   },
+//   optipng: {
+//     enabled: true
+//   },
+//   pngquant: {
+//     quality: [0.5, 0.65],
+//     speed: 4
+//   },
+//   gifsicle: {
+//     interlaced: false
+//   }
+// }
 
 module.exports = {
   publicPath: './',
@@ -54,14 +54,14 @@ module.exports = {
 
   chainWebpack: (config) => {
     // 图片压缩(仅非开发环境)
-    if (isPro) {
-      config.module.rule('images')
-        .test(/\.(gif|png|jpe?g|svg)$/i)
-        .use('image-webpack-loader')
-        .loader('image-webpack-loader')
-        .options(customImgLoaderOptions)
-        .end()
-    }
+    // if (isPro) {
+    //   config.module.rule('images')
+    //     .test(/\.(gif|png|jpe?g|svg)$/i)
+    //     .use('image-webpack-loader')
+    //     .loader('image-webpack-loader')
+    //     .options(customImgLoaderOptions)
+    //     .end()
+    // }
 
     // 代码分离
     if (notDev) {

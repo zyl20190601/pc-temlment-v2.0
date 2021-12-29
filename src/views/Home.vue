@@ -17,16 +17,199 @@
         </el-table-column>
       </template>
     </lb-table-list>
+    <div @click="isShow = true">isShow</div>
+    <FormDialog
+      :is-show.sync="isShow"
+      :form-group="formGroup"
+      :form-data="formData"
+      title="1"
+    />
   </div>
 </template>
 <script>
 import LbTableList from '_com/lb-table-list'
+import FormDialog from '_com/form-dialog'
 export default {
   components: {
-    LbTableList
+    LbTableList,
+    FormDialog
   },
   data () {
     return {
+      isShow: false,
+      formGroup: [
+        {
+          targetElement: 'el-input',
+          label: 'input+正则', //字段
+          value: 'input', //字段名
+          colSpan: 12, //参考el-col
+          isHidden: false, // 是否隐藏
+          align: 'left',
+          props: {
+            placeholder: '请填写手机号', //提示内容
+            disabled: false, //是否禁用
+          },
+          style: {
+            // 样式
+          },
+          targetEvent: {
+            // 绑定事件
+          },
+          rules: [
+            {
+              required: true,
+              message: '联系方式',
+            },
+          ], //验证
+        },
+        {
+          targetElement: 'el-input',
+          label: 'input+正则', //字段
+          value: 'input', //字段名
+          colSpan: 12, //参考el-col
+          isHidden: false, // 是否隐藏
+          align: 'left',
+          props: {
+            placeholder: '请填写手机号', //提示内容
+            disabled: false, //是否禁用
+          },
+          style: {
+            // 样式
+          },
+          targetEvent: {
+            // 绑定事件
+          },
+          rules: [
+            {
+              required: true,
+              message: '联系方式',
+            },
+          ], //验证
+        },
+        {
+          targetElement: 'el-input',
+          label: 'input+正则', //字段
+          value: 'input', //字段名
+          colSpan: 12, //参考el-col
+          isHidden: false, // 是否隐藏
+          align: 'left',
+          props: {
+            placeholder: '请填写手机号', //提示内容
+            disabled: false, //是否禁用
+          },
+          style: {
+            // 样式
+          },
+          targetEvent: {
+            // 绑定事件
+          },
+          rules: [
+            {
+              required: true,
+              message: '联系方式',
+            },
+          ], //验证
+        },
+        {
+          targetElement: 'el-input',
+          label: 'input+正则', //字段
+          value: 'input', //字段名
+          colSpan: 12, //参考el-col
+          isHidden: false, // 是否隐藏
+          align: 'left',
+          props: {
+            placeholder: '请填写手机号', //提示内容
+            disabled: false, //是否禁用
+          },
+          style: {
+            // 样式
+          },
+          targetEvent: {
+            // 绑定事件
+          },
+          rules: [
+            {
+              required: true,
+              message: '联系方式',
+            },
+          ], //验证
+        },
+        {
+          targetElement: 'el-input',
+          label: 'input+正则', //字段
+          value: 'input', //字段名
+          colSpan: 12, //参考el-col
+          isHidden: false, // 是否隐藏
+          align: 'left',
+          props: {
+            placeholder: '请填写手机号', //提示内容
+            disabled: false, //是否禁用
+          },
+          style: {
+            // 样式
+          },
+          targetEvent: {
+            // 绑定事件
+          },
+          rules: [
+            {
+              required: true,
+              message: '联系方式',
+            },
+          ], //验证
+        },
+        {
+          targetElement: 'el-input',
+          label: 'input+正则', //字段
+          value: 'input', //字段名
+          colSpan: 12, //参考el-col
+          isHidden: false, // 是否隐藏
+          align: 'left',
+          props: {
+            placeholder: '请填写手机号', //提示内容
+            disabled: false, //是否禁用
+          },
+          style: {
+            // 样式
+          },
+          targetEvent: {
+            // 绑定事件
+          },
+          rules: [
+            {
+              required: true,
+              message: '联系方式',
+            },
+          ], //验证
+        },
+        {
+          targetElement: 'el-input',
+          label: 'input+正则', //字段
+          value: 'input', //字段名
+          colSpan: 12, //参考el-col
+          isHidden: false, // 是否隐藏
+          align: 'left',
+          props: {
+            placeholder: '请填写手机号', //提示内容
+            disabled: false, //是否禁用
+          },
+          style: {
+            // 样式
+          },
+          targetEvent: {
+            // 绑定事件
+          },
+          rules: [
+            {
+              required: true,
+              message: '联系方式',
+            },
+          ], //验证
+        },
+      ],
+      formData: {
+        input: '11'
+      },
       tableList: [],
       tableColumn: [
         {
@@ -80,7 +263,7 @@ export default {
               }
             })
           },
-        },]
+        }]
     }
   },
   created () {

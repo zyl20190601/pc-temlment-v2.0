@@ -1,0 +1,9 @@
+.el-dialog {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  overflow: hidden;
+  .el-dialog__header {
+    text-align: left;
+  }
+}
